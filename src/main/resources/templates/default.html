@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Blackjack</title>
+	</head>
+	<body>
+		<h1>Welcome to a Friendly Game of Blackjack!</h1>
+		
+		<form method="post" action="/placeBet">
+			<input type="number" name="betAmount">
+			<button>Bet</button>
+		</form>
+		
+		Balance: {{ blackjackGame.getPlayerBalance }}
+	
+	</body>
+</html>
