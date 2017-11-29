@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Blackjack</title>
+	</head>
+	<body>
+		Dealer's visible card:
+		<br>
+		<br>
+		{{ blackjackGame.getDealerVisibleCard.getbaseCardName }} of {{ blackjackGame.getDealerVisibleCard.getSuit }}
+		<br>
+		<br>
+		Your cards:
+		<ul>
+			{{#blackjackGame.getPlayersHand}}
+			<li>{{ this.getbaseCardName }} of {{ this.getSuit }}</li> 
+			{{/blackjackGame.getPlayersHand}}
+		</ul>
+		
+	
+	</body>
+</html>

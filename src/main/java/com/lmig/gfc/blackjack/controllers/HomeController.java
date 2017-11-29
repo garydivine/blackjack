@@ -27,8 +27,9 @@ public class HomeController {
 	@PostMapping("/placeBet")
 	public ModelAndView dealCards(int betAmount) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("default");
-		mv.addObject("blackjackGame", blackjackGame);
+		mv.setViewName("play");
+		blackjackGame.dealInitialCards();
+		mv.addObject("blackjackGame", blackjackGame); 
 		return mv;
 	}
 	
