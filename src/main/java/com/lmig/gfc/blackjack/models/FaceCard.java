@@ -10,7 +10,7 @@ public class FaceCard extends Card{
 	}
 
 	@Override
-	public String getbaseCardName() {
+	public String getFace() {
 		return face.toString();
 	}
 

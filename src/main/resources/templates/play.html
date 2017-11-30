@@ -7,17 +7,26 @@
 	<body>
 		Dealer's visible card:
 		<br>
-		<br>
-		{{ blackjackGame.getDealerVisibleCard.getbaseCardName }} of {{ blackjackGame.getDealerVisibleCard.getSuit }}
-		<br>
+		<ul>
+			<li>{{ blackjackGame.getDealerVisibleCard.getFace }} of {{ blackjackGame.getDealerVisibleCard.getSuit }}</li> 
+		</ul>
 		<br>
 		Your cards:
 		<ul>
 			{{#blackjackGame.getPlayersHand}}
-			<li>{{ this.getbaseCardName }} of {{ this.getSuit }}</li> 
+			<li>{{ this.getFace }} of {{ this.getSuit }}</li> 
 			{{/blackjackGame.getPlayersHand}}
 		</ul>
-		
+		<br>
+		Balance: {{ blackjackGame.getPlayerBalance }} 
+		<br>
+		<br>
+		<form method="post" action="/hit">
+			<button>Hit</button>
+		</form>
+		<form method="post" action="/stand">
+			<button>Stand</button>
+		</form>
 	
 	</body>
 </html>

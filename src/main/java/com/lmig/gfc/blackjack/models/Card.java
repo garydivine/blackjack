@@ -12,7 +12,7 @@ public abstract class Card {
 		return suit;
 	}
 	
-	public abstract String getbaseCardName();
+	public abstract String getFace();
 
 	public abstract int getValue();
 

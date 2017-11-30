@@ -24,6 +24,18 @@ public class BlackJackGame {
 		dealer.addCardToHand(deckArray); 
 	}
 	
+	public void placeBet(int betAmount) {
+		player.placeBet(betAmount);
+	}
+	
+	public void hit() {
+		player.addCardToHand(deckArray);
+	}
+	
+	public void stand() {
+		// add logic
+	}
+	
 	public ArrayList<Card> getPlayersHand() {
 		return player.getHand().getHandArray();
 	}
@@ -33,7 +45,7 @@ public class BlackJackGame {
 	}
 
 	public int getPlayerBalance() {
-		return player.getBalanceFromBank();
+		return player.getBalance();
 	}
 	
 }

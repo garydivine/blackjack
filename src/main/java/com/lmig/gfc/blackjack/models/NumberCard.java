@@ -10,7 +10,7 @@ public class NumberCard extends Card{
 	}
 
 	@Override
-	public String getbaseCardName() {
+	public String getFace() {
 		return String.valueOf(value);
 	}
 

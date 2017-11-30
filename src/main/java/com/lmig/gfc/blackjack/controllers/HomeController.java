@@ -18,19 +18,39 @@ public class HomeController {
 
 	@GetMapping("/")
 	public ModelAndView showApp() {
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView(); 
 		mv.setViewName("default");
 		mv.addObject("blackjackGame", blackjackGame);
 		return mv;
 	}
 	
-	@PostMapping("/placeBet")
-	public ModelAndView dealCards(int betAmount) {
+	@PostMapping("/play")
+	public ModelAndView play(int betAmount) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("play");
+		blackjackGame.placeBet(betAmount);
 		blackjackGame.dealInitialCards();
 		mv.addObject("blackjackGame", blackjackGame); 
 		return mv;
+	}
+	
+	@PostMapping("/hit")
+	public ModelAndView hit() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("play");
+		blackjackGame.hit();
+		mv.addObject("blackjackGame", blackjackGame); 
+		return mv;
+		// maybe redirect to play?
+	}
+	
+	@PostMapping("/stand")
+	public ModelAndView stand() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("play");
+		mv.addObject("blackjackGame", blackjackGame); 
+		return mv;
+		// maybe redirect to play?
 	}
 	
 }

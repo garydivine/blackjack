@@ -4,21 +4,24 @@ import java.util.ArrayList;
 
 public class Player {
 
-	private Bank bank;
+	private int balance;
 	private Hand hand;
 
-	public Player(int intialbalance) {
-		bank = new Bank(intialbalance);
+	public Player(int intialBalance) {
+		this.balance = intialBalance;
 		hand = new Hand();
 	}
 	
 	public void addCardToHand(ArrayList<Card> deckArray) {
 		hand.addCardToHand(deckArray);
-		
+	}
+	
+	public void placeBet(int betAmount) {
+		balance -= betAmount;
 	}
 
-	public int getBalanceFromBank() {
-		return bank.getBalance();
+	public int getBalance() {
+		return balance;
 	}
 
 	public Hand getHand() {
