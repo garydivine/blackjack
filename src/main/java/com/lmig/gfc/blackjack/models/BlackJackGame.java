@@ -10,7 +10,7 @@ public class BlackJackGame {
 	private ArrayList<Card> deckArray;
 	private boolean handManuallyStopped;
 
-	public BlackJackGame() { 
+	public BlackJackGame() {
 		deck = new Deck();
 		dealer = new Dealer();
 		player = new Player(500);
@@ -77,9 +77,12 @@ public class BlackJackGame {
 	// dealer wins if player busts or value is higher than
 	// the player's
 	public boolean dealerWinsHand() {
-		/*return ((player.getHand().isBust())
-				|| (dealer.getHand().getTotal() > player.getHand().getTotal() && !dealer.getHand().isBust()));*/
-		return(!playerWinsHandNoBlackjack() && !playerWinsHandWithBlackjack() && !bothHaveBlackjacks() && !standardDraw());
+		/*
+		 * return ((player.getHand().isBust()) || (dealer.getHand().getTotal() >
+		 * player.getHand().getTotal() && !dealer.getHand().isBust()));
+		 */
+		return (!playerWinsHandNoBlackjack() && !playerWinsHandWithBlackjack() && !bothHaveBlackjacks()
+				&& !standardDraw());
 	}
 
 	public boolean bothHaveBlackjacks() {
@@ -90,8 +93,8 @@ public class BlackJackGame {
 		return (player.getHand().getTotal() == dealer.getHand().getTotal());
 	}
 
-	public boolean isGameOver() { 
-		return (player.getBalance() == 0);  //&& player.getCurrentBet() == 0
+	public boolean isGameOver() {
+		return (player.getBalance() == 0 && player.getCurrentBet() == 0);
 	}
 
 	public void hit() {
