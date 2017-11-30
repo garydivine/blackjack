@@ -5,11 +5,23 @@
 		<title>Blackjack</title>
 	</head>
 	<body>
-		Dealer's visible card:
-		<br>
-		<ul>
-			<li>{{ blackjackGame.getDealerVisibleCard.getFace }} of {{ blackjackGame.getDealerVisibleCard.getSuit }}</li> 
-		</ul>
+		{{^blackjackGame.stopHand}}
+			Dealer's visible card:
+			<br>
+			<ul>
+				<li>{{ blackjackGame.getDealerVisibleCard.getFace }} of {{ blackjackGame.getDealerVisibleCard.getSuit }}</li>
+			</ul>
+		{{/blackjackGame.stopHand}}
+		
+		{{#blackjackGame.stopHand}}
+			Dealer's deck:
+			<br>
+			<ul>
+				{{#blackjackGame.getAllDealerCards}}
+				<li>{{ this.getFace }} of {{ this.getSuit }}</li>
+				{{/blackjackGame.getAllDealerCards}} 
+			</ul>
+		{{/blackjackGame.stopHand}} 
 		<br>
 		Your cards:
 		<ul>
@@ -18,15 +30,59 @@
 			{{/blackjackGame.getPlayersHand}}
 		</ul>
 		<br>
+		Bet: {{ blackjackGame.getPlayerBet }}
+		<br>
 		Balance: {{ blackjackGame.getPlayerBalance }} 
 		<br>
 		<br>
-		<form method="post" action="/hit">
-			<button>Hit</button>
-		</form>
-		<form method="post" action="/stand">
-			<button>Stand</button>
-		</form>
+		{{^blackjackGame.stopHand}}
+			<form method="post" action="/hit">
+				<button>Hit</button>
+			</form>
+			<form method="post" action="/stand">
+				<button>Stand</button>
+			</form>
+		{{/blackjackGame.stopHand}}
+		
+		{{#blackjackGame.stopHand}}
+		
+			{{#blackjackGame.playerWinsHandNoBlackjack}}
+				You win hand!
+			{{/blackjackGame.playerWinsHandNoBlackjack}}
+			
+			{{#blackjackGame.playerWinsHandWithBlackjack}}
+				You win hand with a blackjack!
+			{{/blackjackGame.playerWinsHandWithBlackjack}}
+			
+			{{#blackjackGame.dealerWinsHand}}
+				Dealer wins hand!
+			{{/blackjackGame.dealerWinsHand}}
+			
+			{{#blackjackGame.bothHaveBlackjacks}}
+				You both have blackjacks, so draw!
+			{{/blackjackGame.bothHaveBlackjacks}}
+			
+			{{#blackjackGame.standardDraw}}
+				Draw!
+			{{/blackjackGame.standardDraw}}
+			
+			<br>
+			<br>
+			Dealer Total: {{ blackjackGame.dealer.getHand.getTotal }}  
+			<br>
+			Player Total: {{ blackjackGame.player.getHand.getTotal }}
+			
+			{{^blackjackGame.isGameOver}}
+			<form method="post" action="/contineGame">
+				<button>Continue Game</button>
+			</form>
+			{{/blackjackGame.isGameOver}}
+		
+		{{/blackjackGame.stopHand}}
+			<br>
+		{{#blackjackGame.isGameOver}}
+			Game is over
+		{{/blackjackGame.isGameOver}}
 	
 	</body>
 </html>

@@ -6,6 +6,7 @@ public class Player {
 
 	private int balance;
 	private Hand hand;
+	private int currentBet;
 
 	public Player(int intialBalance) {
 		this.balance = intialBalance;
@@ -16,8 +17,32 @@ public class Player {
 		hand.addCardToHand(deckArray);
 	}
 	
+	public void emptyDeck(ArrayList<Card> deckArray) {
+		hand.emptyDeck(deckArray);
+	}
+	
 	public void placeBet(int betAmount) {
-		balance -= betAmount;
+		this.currentBet = betAmount;
+		balance = balance - betAmount;
+	}
+	
+	public void loseBet() { 
+		currentBet = 0;
+	}
+	
+	public void winBetNoBlackjack() {
+		balance = balance + (currentBet * 2);
+		currentBet = 0;
+	}
+	
+	public void winBetWithBlackjack() {
+		balance = balance + (int)((double)(currentBet) * 1.5);
+		currentBet = 0;
+	}
+	
+	public void draw() {
+		balance = balance + currentBet;
+		currentBet = 0;
 	}
 
 	public int getBalance() {
@@ -26,6 +51,10 @@ public class Player {
 
 	public Hand getHand() {
 		return hand;
+	}
+
+	public int getCurrentBet() {
+		return currentBet;
 	}
 
 }

@@ -14,6 +14,10 @@ public class Dealer {
 		hand.addCardToHand(deckArray);
 		
 	}
+	
+	public void emptyDeck(ArrayList<Card> deckArray) {
+		hand.emptyDeck(deckArray);
+	}
 
 	public Hand getHand() {
 		return hand;

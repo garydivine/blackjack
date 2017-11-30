@@ -1,14 +1,15 @@
-package com.lmig.gfc.blackjack.controllers;
+package com.lmig.gfc.blackjack.controllers; 
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.lmig.gfc.blackjack.models.BlackJackGame;
 
 @Controller
-public class HomeController {
+public class HomeController { 
 	
 	private BlackJackGame blackjackGame; 
 	
@@ -28,8 +29,10 @@ public class HomeController {
 	public ModelAndView play(int betAmount) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("play");
+		// at some point replace with a start hand method in BJG class
 		blackjackGame.placeBet(betAmount);
 		blackjackGame.dealInitialCards();
+		blackjackGame.checkForBlackjacks();
 		mv.addObject("blackjackGame", blackjackGame); 
 		return mv;
 	}
@@ -41,16 +44,23 @@ public class HomeController {
 		blackjackGame.hit();
 		mv.addObject("blackjackGame", blackjackGame); 
 		return mv;
-		// maybe redirect to play?
 	}
 	
 	@PostMapping("/stand")
 	public ModelAndView stand() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("play");
+		blackjackGame.stand();
 		mv.addObject("blackjackGame", blackjackGame); 
 		return mv;
-		// maybe redirect to play?
+	}
+	
+	@PostMapping("/contineGame")
+	public ModelAndView backToDefault() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/");
+		blackjackGame.continueGame();
+		return mv;
 	}
 	
 }

@@ -8,7 +8,7 @@ public class AceCard extends Card{
 
 	@Override
 	public String getFace() { 
-		return "Ace";
+		return "ACE";
 	}
 
 	@Override
