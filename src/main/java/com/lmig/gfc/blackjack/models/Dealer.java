@@ -12,7 +12,6 @@ public class Dealer {
 
 	public void addCardToHand(Deck deck) {
 		hand.addCardToHand(deck);
-
 	}
 
 	public void emptyHand() {
