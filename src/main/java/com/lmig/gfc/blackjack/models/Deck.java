@@ -41,11 +41,6 @@ public class Deck {
 
 	private void shuffleDeck() {
 		Collections.shuffle(deckArray);
-
-		/*
-		 * // Print cards out to console for debugging purposes for (Card card :
-		 * deckArray) { System.out.println(card.getFace() + " of " + card.getSuit()); }
-		 */
 	}
 	
 	public Card removeCardFromDeck() {

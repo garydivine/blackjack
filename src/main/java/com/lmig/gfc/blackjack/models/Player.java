@@ -13,20 +13,12 @@ public class Player {
 		hand = new Hand();
 	}
 
-	public void addCardToHand(Deck deck) {
-		hand.addCardToHand(deck);
-	}
-
-	public void emptyHand() {
-		hand.emptyHand();
-	}
-
-	public void placeBet(int betAmount) {  
+	public void placeBet(int betAmount) {
 		this.currentBet = betAmount;
 		balance = balance - betAmount;
 	}
-	
-	public void doubleBet() {  
+
+	public void doubleBet() {
 		balance = balance - currentBet;
 		currentBet = currentBet * 2;
 	}
@@ -48,6 +40,14 @@ public class Player {
 	public void draw() {
 		balance = balance + currentBet;
 		currentBet = 0;
+	}
+
+	public void addCardToHand(Deck deck) {
+		hand.addCardToHand(deck);
+	}
+
+	public void emptyHand() {
+		hand.emptyHand();
 	}
 
 	public int getBalance() {

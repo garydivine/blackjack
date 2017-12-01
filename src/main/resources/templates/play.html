@@ -8,32 +8,32 @@
 	<body>
 		<div>
 		{{^blackjackGame.stopHand}}
-			Dealer's visible card:
-			<div>
-				<ul>
-					<li>{{ blackjackGame.getDealerVisibleCard.getFace }} of {{ blackjackGame.getDealerVisibleCard.getSuit }}</li>
-				</ul>
-			</div>
+		Dealer's visible card:
+		<div>
+			<ul>
+				<li>{{ blackjackGame.getDealerVisibleCard.getFace }} of {{ blackjackGame.getDealerVisibleCard.getSuit }}</li>
+			</ul>
+		</div>
 		{{/blackjackGame.stopHand}}
 		
 		{{#blackjackGame.stopHand}}
-			Dealer's deck:
-			<div>
-				<ul>
-					{{#blackjackGame.getAllDealerCards}}
-					<li>{{ this.getFace }} of {{ this.getSuit }}</li>
-					{{/blackjackGame.getAllDealerCards}} 
-				</ul>
-			</div>
+		Dealer's deck:
+		<div>
+			<ul>
+				{{#blackjackGame.getAllDealerCards}}
+				<li>{{ this.getFace }} of {{ this.getSuit }}</li>
+				{{/blackjackGame.getAllDealerCards}} 
+			</ul>
+		</div>
 		{{/blackjackGame.stopHand}}
 		</div>
 		<div>
 			Your cards:
 			<div>
 				<ul>
-					{{#blackjackGame.getPlayersCards}}
+					{{#blackjackGame.getAllPlayersCards}}
 					<li>{{ this.getFace }} of {{ this.getSuit }}</li> 
-					{{/blackjackGame.getPlayersCards}}
+					{{/blackjackGame.getAllPlayersCards}}
 				</ul>
 			</div>
 		</div> 
@@ -45,75 +45,75 @@
 		</div>
 		<div class="playActionButton">
 			{{^blackjackGame.stopHand}}
+			<div>
+				<form method="post" action="/hit">
+					<button>Hit Me</button>
+				</form>
+			</div>
+			<div>
+				<form method="post" action="/stand">
+					<button>Stand</button>
+				</form>
+			</div>
+			{{#blackjackGame.isEligibleForDoubleDown}}
 				<div>
-					<form method="post" action="/hit">
-						<button>Hit Me</button>
+					<form method="post" action="/doubleDown">
+						<button>Double Down</button>
 					</form>
 				</div>
-				<div>
-					<form method="post" action="/stand">
-						<button>Stand</button>
-					</form>
-				</div>
-				{{#blackjackGame.isEligibleForDoubleDown}}
-					<div>
-						<form method="post" action="/doubleDown">
-							<button>Double Down</button>
-						</form>
-					</div>
-				{{/blackjackGame.isEligibleForDoubleDown}}
+			{{/blackjackGame.isEligibleForDoubleDown}}
 			{{/blackjackGame.stopHand}}
 		</div>
 		<div>
 			{{#blackjackGame.stopHand}}
-				<div id="handResult">
-					{{#blackjackGame.playerWinsHandNoBlackjack}}
-						You win hand!
-					{{/blackjackGame.playerWinsHandNoBlackjack}}
-					
-					{{#blackjackGame.playerWinsHandWithBlackjack}}
-						You win hand with a blackjack!
-					{{/blackjackGame.playerWinsHandWithBlackjack}}
-					
-					{{#blackjackGame.dealerWinsHand}}
-						Dealer wins hand!
-					{{/blackjackGame.dealerWinsHand}}
-					
-					{{#blackjackGame.bothHaveBlackjacks}}
-						You both have blackjacks, so draw!
-					{{/blackjackGame.bothHaveBlackjacks}}
-					
-					{{#blackjackGame.standardDraw}}
-						Draw!
-					{{/blackjackGame.standardDraw}}
+			<div id="handResult">
+				{{#blackjackGame.playerWinsHandNoBlackjack}}
+					You win hand!
+				{{/blackjackGame.playerWinsHandNoBlackjack}}
+				
+				{{#blackjackGame.playerWinsHandWithBlackjack}}
+					You win hand with a blackjack!
+				{{/blackjackGame.playerWinsHandWithBlackjack}}
+				
+				{{#blackjackGame.dealerWinsHand}}
+					Dealer wins hand!
+				{{/blackjackGame.dealerWinsHand}}
+				
+				{{#blackjackGame.bothHaveBlackjacks}}
+					You both have blackjacks, so draw!
+				{{/blackjackGame.bothHaveBlackjacks}}
+				
+				{{#blackjackGame.standardDraw}}
+					Draw!
+				{{/blackjackGame.standardDraw}}
+			</div>
+			<div id="handTotals">
+				<div>
+					Dealer Total: {{ blackjackGame.getDealerHand.getTotal }}  
 				</div>
-				<div id="handTotals">
-					<div>
-						Dealer Total: {{ blackjackGame.dealer.getHand.getTotal }}  
-					</div>
-					<div>
-						Your Total: {{ blackjackGame.player.getHand.getTotal }}
-					</div>
+				<div>
+					Your Total: {{ blackjackGame.getPlayerHand.getTotal }}
 				</div>
-				<div class="playActionButton">
-					{{^blackjackGame.isGameOver}}
-					<form method="post" action="/contineGame">
-						<button>Continue Game</button>
-					</form>
-					{{/blackjackGame.isGameOver}}
-				</div>
+			</div>
+			<div class="playActionButton">
+				{{^blackjackGame.isGameOver}}
+				<form method="post" action="/contineGame">
+					<button>Continue Game</button>
+				</form>
+				{{/blackjackGame.isGameOver}}
+			</div>
 			{{/blackjackGame.stopHand}}
 		</div>
 		<div>
 			{{#blackjackGame.isGameOver}}
-				<div>
-					Game is over
-				</div>
-				<div class="playActionButton">
-					<form method="post" action="/restartGame">
-						<button>Restart Game</button>
-					</form>
-				</div>
+			<div>
+				Game is over  :(
+			</div>
+			<div class="playActionButton">
+				<form method="post" action="/restartGame">
+					<button>Restart Game</button>
+				</form>
+			</div>
 			{{/blackjackGame.isGameOver}}
 		</div>
 	</body>
