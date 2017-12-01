@@ -9,11 +9,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.lmig.gfc.blackjack.models.BlackJackGame;
 
 @Controller
-public class HomeController { 
+public class HomeController {
 	
 	private BlackJackGame blackjackGame; 
 	
 	public HomeController() {
+		startGame();
+	}
+	
+	public void startGame() {
 		blackjackGame = new BlackJackGame();
 	}
 
@@ -49,14 +53,22 @@ public class HomeController {
 		mv.setViewName("play");
 		blackjackGame.stand();
 		mv.addObject("blackjackGame", blackjackGame); 
-		return mv;
+		return mv; 
 	}
 	
-	@PostMapping("/contineGame")
+	@PostMapping("/contineGame") 
 	public ModelAndView backToDefault() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("redirect:/");
 		blackjackGame.continueGame();
+		return mv;
+	}
+	
+	@PostMapping("/restartGame")
+	public ModelAndView restartGame() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/");
+		startGame();
 		return mv;
 	}
 	

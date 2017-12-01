@@ -10,3 +10,15 @@ body {
 	font-family: helvetica;
 	font-size: 16px;
 }
+
+#handResult {
+	margin-top: 15px;
+}
+
+#handTotals {
+	margin-top: 15px;
+}
+
+.playActionButton {
+	margin-top: 15px;
+}

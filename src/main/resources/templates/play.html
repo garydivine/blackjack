@@ -43,19 +43,23 @@
 		<div>
 			Balance: {{ blackjackGame.getPlayerBalance }} 
 		</div>
-		<div>
+		<div class="playActionButton">
 			{{^blackjackGame.stopHand}}
-				<form method="post" action="/hit">
-					<button>Hit</button>
-				</form>
-				<form method="post" action="/stand">
-					<button>Stand</button>
-				</form>
+				<div>
+					<form method="post" action="/hit">
+						<button>Hit Me</button>
+					</form>
+				</div>
+				<div>
+					<form method="post" action="/stand">
+						<button>Stand</button>
+					</form>
+				</div>
 			{{/blackjackGame.stopHand}}
 		</div>
 		<div>
 			{{#blackjackGame.stopHand}}
-				<div>
+				<div id="handResult">
 					{{#blackjackGame.playerWinsHandNoBlackjack}}
 						You win hand!
 					{{/blackjackGame.playerWinsHandNoBlackjack}}
@@ -76,13 +80,15 @@
 						Draw!
 					{{/blackjackGame.standardDraw}}
 				</div>
-				<div>
-					Dealer Total: {{ blackjackGame.dealer.getHand.getTotal }}  
+				<div id="handTotals">
+					<div>
+						Dealer Total: {{ blackjackGame.dealer.getHand.getTotal }}  
+					</div>
+					<div>
+						Your Total: {{ blackjackGame.player.getHand.getTotal }}
+					</div>
 				</div>
-				<div>
-				Player Total: {{ blackjackGame.player.getHand.getTotal }}
-				</div>
-				<div>
+				<div class="playActionButton">
 					{{^blackjackGame.isGameOver}}
 					<form method="post" action="/contineGame">
 						<button>Continue Game</button>
@@ -93,7 +99,14 @@
 		</div>
 		<div>
 			{{#blackjackGame.isGameOver}}
-				Game is over
+				<div>
+					Game is over
+				</div>
+				<div class="playActionButton">
+					<form method="post" action="/restartGame">
+						<button>Restart Game</button>
+					</form>
+				</div>
 			{{/blackjackGame.isGameOver}}
 		</div>
 	</body>

@@ -13,8 +13,8 @@ public class Player {
 		hand = new Hand();
 	}
 
-	public void addCardToHand(ArrayList<Card> deckArray, ArrayList<Card> discardedCards) {
-		hand.addCardToHand(deckArray, discardedCards);
+	public void addCardToHand(Deck deck) {
+		hand.addCardToHand(deck);
 	}
 
 	public void emptyHand() {

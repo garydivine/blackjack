@@ -1,6 +1,6 @@
 package com.lmig.gfc.blackjack.models;
 
-import java.util.ArrayList;
+import java.util.ArrayList;  
 
 public class BlackJackGame {
 
@@ -22,10 +22,10 @@ public class BlackJackGame {
 	}
 
 	public void dealInitialCards() {
-		player.addCardToHand(deck.getDeck(), deck.getDiscardedDeckArray());
-		player.addCardToHand(deck.getDeck(), deck.getDiscardedDeckArray());
-		dealer.addCardToHand(deck.getDeck(), deck.getDiscardedDeckArray());
-		dealer.addCardToHand(deck.getDeck(), deck.getDiscardedDeckArray());
+		player.addCardToHand(deck);
+		player.addCardToHand(deck);
+		dealer.addCardToHand(deck);
+		dealer.addCardToHand(deck);
 	}
 
 	public void checkForBlackjacks() {
@@ -82,22 +82,22 @@ public class BlackJackGame {
 	// dealer wins if all the other conditions are not met
 	public boolean dealerWinsHand() {
 		return (!playerWinsHandNoBlackjack() && !playerWinsHandWithBlackjack() && !bothHaveBlackjacks()
-				&& !standardDraw());
+				&& !standardDraw()); 
 	}
 
 	// game is over when the player has no more money and they have lost their last hand
-	public boolean isGameOver() {
+	public boolean isGameOver() { 
 		return (player.getBalance() == 0 && player.getCurrentBet() == 0);
 	} 
 
 	public void hit() {
-		player.addCardToHand(deck.getDeck(), deck.getDiscardedDeckArray());
+		player.addCardToHand(deck);
 		payOut();
 	}
 
 	public void stand() {
 		while (dealer.getHand().getTotal() <= 16) {
-			dealer.addCardToHand(deck.getDeck(), deck.getDiscardedDeckArray());
+			dealer.addCardToHand(deck);
 		}
 		handManuallyStopped = true;
 		payOut();

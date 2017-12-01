@@ -9,7 +9,7 @@
 		<h1>Welcome to a Friendly Game of Blackjack!</h1>
 		<div>
 		<form method="post" action="/play">
-			<input type="number" name="betAmount" required autofocus>
+			<input type="number" name="betAmount" required autofocus min="1" max="{{blackjackGame.getPlayerBalance}}">
 			<button>Bet</button>
 		</form>
 		</div>

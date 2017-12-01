@@ -47,6 +47,23 @@ public class Deck {
 		 * deckArray) { System.out.println(card.getFace() + " of " + card.getSuit()); }
 		 */
 	}
+	
+	public Card removeCardFromDeck() {
+		Card removedCard;
+		
+		// making sure we get a new card off the deck
+		try {
+			removedCard = deckArray.remove(0);
+			discardedDeckArray.add(removedCard); 
+		} catch (IndexOutOfBoundsException ioobe) {
+			deckArray.addAll(discardedDeckArray);
+			shuffleDeck();
+			discardedDeckArray.clear();
+			removedCard = deckArray.remove(0);
+			discardedDeckArray.add(removedCard);
+		}
+		return removedCard;
+	}
 
 	public ArrayList<Card> getDeck() {
 		return deckArray;
