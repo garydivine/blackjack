@@ -56,6 +56,15 @@ public class HomeController {
 		return mv; 
 	}
 	
+	@PostMapping("//doubleDown")
+	public ModelAndView doubleDown() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("play");
+		blackjackGame.doubleDown();;
+		mv.addObject("blackjackGame", blackjackGame); 
+		return mv; 
+	}
+	
 	@PostMapping("/contineGame") 
 	public ModelAndView backToDefault() {
 		ModelAndView mv = new ModelAndView();

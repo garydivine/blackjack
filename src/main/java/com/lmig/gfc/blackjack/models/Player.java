@@ -21,9 +21,14 @@ public class Player {
 		hand.emptyHand();
 	}
 
-	public void placeBet(int betAmount) {
+	public void placeBet(int betAmount) {  
 		this.currentBet = betAmount;
 		balance = balance - betAmount;
+	}
+	
+	public void doubleBet() {  
+		balance = balance - currentBet;
+		currentBet = currentBet * 2;
 	}
 
 	public void loseBet() {

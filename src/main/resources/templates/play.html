@@ -55,6 +55,13 @@
 						<button>Stand</button>
 					</form>
 				</div>
+				{{#blackjackGame.isEligibleForDoubleDown}}
+					<div>
+						<form method="post" action="/doubleDown">
+							<button>Double Down</button>
+						</form>
+					</div>
+				{{/blackjackGame.isEligibleForDoubleDown}}
 			{{/blackjackGame.stopHand}}
 		</div>
 		<div>

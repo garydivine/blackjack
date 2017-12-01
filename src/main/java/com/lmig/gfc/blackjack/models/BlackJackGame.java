@@ -76,7 +76,7 @@ public class BlackJackGame {
 	}
 
 	public boolean standardDraw() {
-		return (player.getHand().getTotal() == dealer.getHand().getTotal());
+		return ((player.getHand().getTotal() == dealer.getHand().getTotal()) && !bothHaveBlackjacks());
 	}
 	
 	// dealer wins if all the other conditions are not met
@@ -95,12 +95,23 @@ public class BlackJackGame {
 		payOut();
 	}
 
-	public void stand() {
+	public void stand() { 
 		while (dealer.getHand().getTotal() <= 16) {
 			dealer.addCardToHand(deck);
 		}
 		handManuallyStopped = true;
 		payOut();
+	}
+	
+	public boolean isEligibleForDoubleDown() {
+		return player.getHand().getHandArray().size() == 2;
+	}
+	
+	public void doubleDown() {
+		player.doubleBet();
+		player.addCardToHand(deck);
+		handManuallyStopped = true;
+		payOut(); 
 	}
 
 	public ArrayList<Card> getPlayersCards() {
