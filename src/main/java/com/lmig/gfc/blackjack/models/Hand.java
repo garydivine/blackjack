@@ -19,13 +19,14 @@ public class Hand {
 		} catch (IndexOutOfBoundsException ioobe) {
 			Collections.shuffle(discardedCards);
 			deck.addAll(discardedCards);
+			discardedCards.clear();
 			Card removedCard = deck.remove(0);
 			discardedCards.add(removedCard);
 			
 		}
 	}
 	
-	public void emptyDeck(ArrayList<Card> deck) {  
+	public void emptyHand() {  
 		handArray.clear();
 	}
 	

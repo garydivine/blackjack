@@ -15,8 +15,8 @@ public class Dealer {
 		
 	}
 	
-	public void emptyDeck(ArrayList<Card> deckArray) {
-		hand.emptyDeck(deckArray);
+	public void emptyHand() {
+		hand.emptyHand();
 	}
 
 	public Hand getHand() {

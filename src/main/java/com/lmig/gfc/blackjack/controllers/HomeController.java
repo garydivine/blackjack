@@ -29,10 +29,7 @@ public class HomeController {
 	public ModelAndView play(int betAmount) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("play");
-		// at some point replace with a start hand method in BJG class
-		blackjackGame.placeBet(betAmount);
-		blackjackGame.dealInitialCards();
-		blackjackGame.checkForBlackjacks();
+		blackjackGame.beginPlayActions(betAmount);
 		mv.addObject("blackjackGame", blackjackGame); 
 		return mv;
 	}

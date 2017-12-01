@@ -6,6 +6,7 @@ import java.util.Collections;
 public class Deck {
 
 	private ArrayList<Card> deckArray = new ArrayList<Card>();
+	private ArrayList<Card> discardedDeckArray = new ArrayList<Card>();;
 
 	public Deck() {
 		populateDeck();
@@ -51,6 +52,10 @@ public class Deck {
 
 	public ArrayList<Card> getDeck() {
 		return deckArray;
+	}
+
+	public ArrayList<Card> getDiscardedDeckArray() {
+		return discardedDeckArray;
 	}
 
 }

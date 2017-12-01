@@ -17,8 +17,8 @@ public class Player {
 		hand.addCardToHand(deckArray, discardedCards);
 	}
 	
-	public void emptyDeck(ArrayList<Card> deckArray) {
-		hand.emptyDeck(deckArray);
+	public void emptyHand() {
+		hand.emptyHand();
 	}
 	
 	public void placeBet(int betAmount) {
