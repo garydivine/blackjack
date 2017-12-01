@@ -12,34 +12,34 @@ public class Player {
 		this.balance = intialBalance;
 		hand = new Hand();
 	}
-	
+
 	public void addCardToHand(ArrayList<Card> deckArray, ArrayList<Card> discardedCards) {
 		hand.addCardToHand(deckArray, discardedCards);
 	}
-	
+
 	public void emptyHand() {
 		hand.emptyHand();
 	}
-	
+
 	public void placeBet(int betAmount) {
 		this.currentBet = betAmount;
 		balance = balance - betAmount;
 	}
-	
-	public void loseBet() { 
+
+	public void loseBet() {
 		currentBet = 0;
 	}
-	
+
 	public void winBetNoBlackjack() {
 		balance = balance + (currentBet * 2);
 		currentBet = 0;
 	}
-	
+
 	public void winBetWithBlackjack() {
-		balance = balance + (int)((double)(currentBet) * 1.5);
+		balance = balance + (int) ((double) (currentBet) * 1.5);
 		currentBet = 0;
 	}
-	
+
 	public void draw() {
 		balance = balance + currentBet;
 		currentBet = 0;

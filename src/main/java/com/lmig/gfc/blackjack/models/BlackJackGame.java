@@ -14,13 +14,13 @@ public class BlackJackGame {
 		dealer = new Dealer();
 		player = new Player(500);
 	}
-	
+
 	public void beginPlayActions(int betAmount) {
 		player.placeBet(betAmount);
 		dealInitialCards();
 		checkForBlackjacks();
 	}
-	
+
 	public void dealInitialCards() {
 		player.addCardToHand(deck.getDeck(), deck.getDiscardedDeckArray());
 		player.addCardToHand(deck.getDeck(), deck.getDiscardedDeckArray());
@@ -39,7 +39,6 @@ public class BlackJackGame {
 		handManuallyStopped = false;
 		player.emptyHand();
 		dealer.emptyHand();
-
 	}
 
 	// conditionally evaluate the payout
@@ -55,35 +54,21 @@ public class BlackJackGame {
 		}
 	}
 
-	// stop hand if either participant busts, gets a blackjack or stop is forced
+	// stop hand if either participant busts or stop is forced
 	public boolean stopHand() {
-		return (player.getHand().isBust() || dealer.getHand().isBust() || player.getHand().isBlackjack()
-				|| dealer.getHand().isBlackjack() || handManuallyStopped);
+		return (player.getHand().isBust() || dealer.getHand().isBust() || handManuallyStopped);
 	}
 
 	// player wins (without Blackjack) if dealer busts or value is higher than
 	// the dealer's
-	// CHECK TO SEE IF I CAN OPTIMIZE THIS
 	public boolean playerWinsHandNoBlackjack() {
-		return ((dealer.getHand().isBust() && !player.getHand().isBlackjack())
-				|| (player.getHand().getTotal() > dealer.getHand().getTotal() && !player.getHand().isBust()
-						&& !player.getHand().isBlackjack()));
+		return ((dealer.getHand().isBust()) || (player.getHand().getTotal() > dealer.getHand().getTotal()
+				&& !player.getHand().isBust() && !player.getHand().isBlackjack()));
 	}
 
 	// player wins (with Blackjack) when they have a blackjack and dealer doesn't
 	public boolean playerWinsHandWithBlackjack() {
 		return (player.getHand().isBlackjack() && !dealer.getHand().isBlackjack());
-	}
-
-	// dealer wins if player busts or value is higher than
-	// the player's
-	public boolean dealerWinsHand() {
-		/*
-		 * return ((player.getHand().isBust()) || (dealer.getHand().getTotal() >
-		 * player.getHand().getTotal() && !dealer.getHand().isBust()));
-		 */
-		return (!playerWinsHandNoBlackjack() && !playerWinsHandWithBlackjack() && !bothHaveBlackjacks()
-				&& !standardDraw());
 	}
 
 	public boolean bothHaveBlackjacks() {
@@ -93,10 +78,17 @@ public class BlackJackGame {
 	public boolean standardDraw() {
 		return (player.getHand().getTotal() == dealer.getHand().getTotal());
 	}
+	
+	// dealer wins if all the other conditions are not met
+	public boolean dealerWinsHand() {
+		return (!playerWinsHandNoBlackjack() && !playerWinsHandWithBlackjack() && !bothHaveBlackjacks()
+				&& !standardDraw());
+	}
 
+	// game is over when the player has no more money and they have lost their last hand
 	public boolean isGameOver() {
 		return (player.getBalance() == 0 && player.getCurrentBet() == 0);
-	}
+	} 
 
 	public void hit() {
 		player.addCardToHand(deck.getDeck(), deck.getDiscardedDeckArray());
@@ -120,7 +112,7 @@ public class BlackJackGame {
 	}
 
 	public ArrayList<Card> getAllDealerCards() {
-		return dealer.getHand().getHandArray();
+		return dealer.getHand().getHandArray();  
 	}
 
 	public int getPlayerBalance() {

@@ -3,14 +3,16 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Blackjack</title>
+		<link rel="stylesheet" href="/styles/app.css">
 	</head>
 	<body>
 		<h1>Welcome to a Friendly Game of Blackjack!</h1>
-		
+		<div>
 		<form method="post" action="/play">
 			<input type="number" name="betAmount" required autofocus>
 			<button>Bet</button>
 		</form>
+		</div>
 		<div>
 			Balance: {{ blackjackGame.getPlayerBalance }}
 		</div>
