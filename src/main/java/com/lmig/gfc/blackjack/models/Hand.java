@@ -1,6 +1,7 @@
 package com.lmig.gfc.blackjack.models;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Hand {
 	
@@ -10,10 +11,18 @@ public class Hand {
 		handArray = new ArrayList<Card>();
 	}
 	
-	public void addCardToHand(ArrayList<Card> deck) {  
+	public void addCardToHand(ArrayList<Card> deck, ArrayList<Card> discardedCards) {  
 		Card card = deck.get(0);
 		handArray.add(card);
-		deck.remove(0);
+		try {
+			Card removedCard = deck.remove(0);
+		} catch (IndexOutOfBoundsException ioobe) {
+			Collections.shuffle(discardedCards);
+			deck.addAll(discardedCards);
+			Card removedCard = deck.remove(0);
+			discardedCards.add(removedCard);
+			
+		}
 	}
 	
 	public void emptyDeck(ArrayList<Card> deck) {  

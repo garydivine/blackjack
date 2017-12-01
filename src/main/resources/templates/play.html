@@ -25,9 +25,9 @@
 		<br>
 		Your cards:
 		<ul>
-			{{#blackjackGame.getPlayersHand}}
+			{{#blackjackGame.getPlayersCards}}
 			<li>{{ this.getFace }} of {{ this.getSuit }}</li> 
-			{{/blackjackGame.getPlayersHand}}
+			{{/blackjackGame.getPlayersCards}}
 		</ul>
 		<br>
 		Bet: {{ blackjackGame.getPlayerBet }}

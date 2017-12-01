@@ -8,6 +8,7 @@ public class BlackJackGame {
 	private Dealer dealer;
 	private Player player;
 	private ArrayList<Card> deckArray;
+	private ArrayList<Card> discardedCardsArray;
 	private boolean handManuallyStopped;
 
 	public BlackJackGame() {
@@ -15,13 +16,14 @@ public class BlackJackGame {
 		dealer = new Dealer();
 		player = new Player(500);
 		deckArray = deck.getDeck();
+		discardedCardsArray = new ArrayList<Card>();
 	}
 
 	public void dealInitialCards() {
-		player.addCardToHand(deckArray);
-		player.addCardToHand(deckArray);
-		dealer.addCardToHand(deckArray);
-		dealer.addCardToHand(deckArray);
+		player.addCardToHand(deckArray, discardedCardsArray);
+		player.addCardToHand(deckArray, discardedCardsArray);
+		dealer.addCardToHand(deckArray, discardedCardsArray);
+		dealer.addCardToHand(deckArray, discardedCardsArray);
 	}
 
 	public void placeBet(int betAmount) {
@@ -98,19 +100,19 @@ public class BlackJackGame {
 	}
 
 	public void hit() {
-		player.addCardToHand(deckArray);
+		player.addCardToHand(deckArray, discardedCardsArray);
 		payOut();
 	}
 
 	public void stand() {
 		while (dealer.getHand().getTotal() <= 16) {
-			dealer.addCardToHand(deckArray);
+			dealer.addCardToHand(deckArray, discardedCardsArray);
 		}
 		handManuallyStopped = true;
 		payOut();
 	}
 
-	public ArrayList<Card> getPlayersHand() {
+	public ArrayList<Card> getPlayersCards() {
 		return player.getHand().getHandArray();
 	}
 

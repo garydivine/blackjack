@@ -10,8 +10,8 @@ public class Dealer {
 		hand = new Hand();
 	}
 	
-	public void addCardToHand(ArrayList<Card> deckArray) {
-		hand.addCardToHand(deckArray);
+	public void addCardToHand(ArrayList<Card> deckArray, ArrayList<Card> discardedCards) {
+		hand.addCardToHand(deckArray, discardedCards);
 		
 	}
 	
