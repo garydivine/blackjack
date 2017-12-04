@@ -109,7 +109,6 @@ public class BlackJackGame {
 	// game is over when the player has no more money and they have lost their last hand
 	public boolean isGameOver() {
 		return (player.getBalance() == 0 && player.getCurrentBet() == 0);
-		//return (player.getBalance() == 0 && stopHand());
 	} 
 	
 	public void continueGame() {
