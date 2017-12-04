@@ -8,7 +8,7 @@
 	<body>
 		<div>
 		{{^blackjackGame.stopHand}}
-		Dealer's visible card:
+		<h2>Dealer's visible card:</h2>
 		<div>
 			<ul>
 				<li>{{ blackjackGame.getDealerVisibleCard.getFace }} of {{ blackjackGame.getDealerVisibleCard.getSuit }}</li>
@@ -17,7 +17,7 @@
 		{{/blackjackGame.stopHand}}
 		
 		{{#blackjackGame.stopHand}}
-		Dealer's deck:
+		<h2>Dealer's deck:</h2>
 		<div>
 			<ul>
 				{{#blackjackGame.getAllDealerCards}}
@@ -29,7 +29,7 @@
 		
 		</div>
 		<div>
-			Your cards:
+			<h2>Your cards:</h2>
 			<div>
 				<ul>
 					{{#blackjackGame.getAllPlayersCards}}
@@ -39,7 +39,7 @@
 			</div>
 		</div> 
 		<div>
-			Bet: {{ blackjackGame.getPlayerBet }}
+			Current Bet: {{ blackjackGame.getPlayerBet }}
 		</div>
 		<div>
 			Balance: {{ blackjackGame.getPlayerBalance }} 
@@ -69,23 +69,23 @@
 			{{#blackjackGame.stopHand}}
 			<div id="handResult">
 				{{#blackjackGame.playerWinsHandNoBlackjack}}
-					You win hand!
+					<h2>You win hand!</h2>
 				{{/blackjackGame.playerWinsHandNoBlackjack}}
 				
 				{{#blackjackGame.playerWinsHandWithBlackjack}}
-					You win hand with a blackjack!
+					<h2>You win hand with a blackjack!</h2>
 				{{/blackjackGame.playerWinsHandWithBlackjack}}
 				
 				{{#blackjackGame.dealerWinsHand}}
-					Dealer wins hand!
+					<h2>Dealer wins hand!</h2>
 				{{/blackjackGame.dealerWinsHand}}
 				
 				{{#blackjackGame.bothHaveBlackjacks}}
-					You both have blackjacks, so draw!
+					<h2>You both have blackjacks, so draw!</h2>
 				{{/blackjackGame.bothHaveBlackjacks}}
 				
 				{{#blackjackGame.standardDraw}}
-					Draw!
+					<h2>Draw!</h2>
 				{{/blackjackGame.standardDraw}}
 			</div>
 			<div id="handTotals">
