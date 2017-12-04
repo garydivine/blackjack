@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.lmig.gfc.blackjack.models.BlackJackGame;
 
 @Controller
-public class HomeController { 
+public class HomeController {
 
 	private BlackJackGame blackjackGame;
 

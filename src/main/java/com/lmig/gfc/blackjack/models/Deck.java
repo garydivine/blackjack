@@ -3,7 +3,7 @@ package com.lmig.gfc.blackjack.models;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Deck { 
+public class Deck {
 
 	private ArrayList<Card> deckArray = new ArrayList<Card>();
 	private ArrayList<Card> discardedDeckArray = new ArrayList<Card>();;
@@ -32,24 +32,19 @@ public class Deck {
 				deckArray.add(new NumberCard(suit, i));
 			}
 		}
-
-		/*
-		 * // Print cards out to console for debugging purposes for (Card card :
-		 * deckArray) { System.out.println(card.getFace() + " of " + card.getSuit()); }
-		 */
 	}
 
 	private void shuffleDeck() {
 		Collections.shuffle(deckArray);
 	}
-	
+
 	public Card removeCardFromDeck() {
 		Card removedCard;
-		
+
 		// making sure we get a new card off the deck
 		try {
 			removedCard = deckArray.remove(0);
-			discardedDeckArray.add(removedCard); 
+			discardedDeckArray.add(removedCard);
 		} catch (IndexOutOfBoundsException ioobe) {
 			deckArray.addAll(discardedDeckArray);
 			shuffleDeck();

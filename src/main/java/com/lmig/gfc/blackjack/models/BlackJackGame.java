@@ -68,7 +68,7 @@ public class BlackJackGame {
 	}
 	
 	// conditionally evaluate the payout
-		public void determinePayOut() { 
+	public void determinePayOut() { 
 			if (dealerWinsHand()) {
 				player.loseBet();
 			} else if (playerWinsHandNoBlackjack()) { 
@@ -103,17 +103,13 @@ public class BlackJackGame {
 		player.doubleBet();
 		player.addCardToHand(deck);
 		
-		// does the dealer get to draw like usual in this scenario?
-		
-		//handManuallyStopped = true;
-		//determinePayOut(); 
-		
 		stand();
 	}
 	
 	// game is over when the player has no more money and they have lost their last hand
 	public boolean isGameOver() {
 		return (player.getBalance() == 0 && player.getCurrentBet() == 0);
+		//return (player.getBalance() == 0 && stopHand());
 	} 
 	
 	public void continueGame() {
